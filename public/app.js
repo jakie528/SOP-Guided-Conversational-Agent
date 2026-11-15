@@ -11,6 +11,8 @@ const actions = query('#actions');
 const inboxAction = query('#inbox-action');
 const stepElements = [...document.querySelectorAll('.phases li')];
 const inbox = query('#inbox');
+const aiConfig = query('#ai-config');
+const configForm = query('#config-form');
 let busy = false;
 let active = false;
 let atStart = true;
@@ -137,6 +139,24 @@ query('#open-inbox').addEventListener('click', async () => {
     query('#mail-subject').textContent = message.subject;
     query('#mail-body').textContent = message.body;
     inbox.showModal();
+  } catch (error) {
+    showStatus(error.message);
+  }
+});
+query('#open-config').addEventListener('click', () => {
+  aiConfig.showModal();
+});
+configForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  try {
+    const result = await request('config', 'POST', {
+      token: query('#ai-token').value,
+      endpoint: query('#ai-endpoint').value,
+      model: query('#ai-model').value,
+    });
+    query('#mode').textContent = result.modelEnabled ? 'AI interpretation enabled' : 'Local interpretation';
+    query('#ai-token').value = '';
+    aiConfig.close();
   } catch (error) {
     showStatus(error.message);
   }

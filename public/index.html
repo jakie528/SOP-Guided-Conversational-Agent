@@ -30,7 +30,10 @@
     <section class="chat" aria-labelledby="chat-heading">
       <header class="chat-header">
         <div><h1 id="chat-heading">Claims assistant</h1><p id="mode">Connecting…</p></div>
-        <button id="reset" class="secondary" type="button">New chat</button>
+        <div class="header-actions">
+          <button id="open-config" class="secondary" type="button">API token</button>
+          <button id="reset" class="secondary" type="button">New chat</button>
+        </div>
       </header>
       <div id="messages" class="messages" role="log" aria-label="Conversation" aria-live="polite"></div>
       <div id="actions" class="actions" hidden>
@@ -56,6 +59,25 @@
     <p id="mail-to"></p>
     <h3 id="mail-subject"></h3>
     <p id="mail-body"></p>
+  </dialog>
+  <dialog id="ai-config">
+    <form method="dialog"><button class="secondary">Close</button></form>
+    <h2>AI Model Configuration</h2>
+    <p class="config-note">Set a session API token to enable live LLM structured NLU and empathetic response synthesis (or set <code>AI_API_TOKEN</code> on the server).</p>
+    <form id="config-form" class="config-form">
+      <label>API Token
+        <input id="ai-token" type="password" placeholder="sk-..." autocomplete="off">
+      </label>
+      <label>Endpoint URL
+        <input id="ai-endpoint" type="url" placeholder="https://api.openai.com/v1/chat/completions">
+      </label>
+      <label>Model
+        <input id="ai-model" type="text" placeholder="gpt-4.1-mini">
+      </label>
+      <div class="config-buttons">
+        <button class="send" type="submit">Save for session</button>
+      </div>
+    </form>
   </dialog>
 </body>
 </html>
