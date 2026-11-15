@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Claims Support | Demo</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="mark" aria-hidden="true">+</span> Claims Support</div>
+    <span class="environment"><span aria-hidden="true"></span> Demo workspace</span>
+  </header>
+  <main class="workspace">
+    <aside class="sidebar">
+      <h2>Workflow</h2>
+      <ol class="phases" aria-label="Workflow progress">
+        <li><span class="step">1</span><div><strong>Verify identity</strong><small>Match three identity details</small></div></li>
+        <li><span class="step">2</span><div><strong>Resolve intent</strong><small>Identify the right claim</small></div></li>
+        <li><span class="step">3</span><div><strong>Process case</strong><small>Review the claim record</small></div></li>
+        <li><span class="step">4</span><div><strong>Follow up</strong><small>Offer an email summary</small></div></li>
+      </ol>
+      <section class="sample">
+        <h2>Try a sample</h2>
+        <p>Use Margaret Chen’s test data to review a denied healthcare claim from January.</p>
+        <button id="sample" type="button">Use sample message <span aria-hidden="true">↗</span></button>
+      </section>
+    </aside>
+    <section class="chat" aria-labelledby="chat-heading">
+      <header class="chat-header">
+        <div><h1 id="chat-heading">Claims assistant</h1><p id="mode">Connecting…</p></div>
+        <button id="reset" class="secondary" type="button">New chat</button>
+      </header>
+      <div id="messages" class="messages" role="log" aria-label="Conversation" aria-live="polite"></div>
+      <div id="actions" class="actions" hidden>
+        <button id="send-summary" class="secondary" type="button">Send summary</button>
+        <button id="skip-summary" class="secondary" type="button">Skip email</button>
+      </div>
+      <div id="inbox-action" class="actions" hidden>
+        <button id="open-inbox" class="secondary" type="button">View demo inbox</button>
+      </div>
+      <div class="composer">
+        <p id="status" role="status" hidden></p>
+        <form id="composer">
+          <textarea id="message" rows="1" maxlength="2500" aria-label="Your message" placeholder="Type a message…" disabled required></textarea>
+          <button class="send" type="submit" disabled>Send <span aria-hidden="true">↑</span></button>
+        </form>
+        <p class="disclosure">Use sample data only. Email and handoff stay inside this demo.</p>
+      </div>
+    </section>
+  </main>
+  <dialog id="inbox">
+    <form method="dialog"><button class="secondary">Close</button></form>
+    <h2>Demo inbox</h2>
+    <p id="mail-to"></p>
+    <h3 id="mail-subject"></h3>
+    <p id="mail-body"></p>
+  </dialog>
+</body>
+</html>
